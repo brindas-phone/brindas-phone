@@ -1,189 +1,311 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Brinda</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Brinda's iPhone</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="data:,">
 <style>
-:root{--sb:calc(env(safe-area-inset-top,0px) + 30px);--bt:calc(env(safe-area-inset-bottom,0px) + 22px);--g:#008069}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;background:#e8e8ea;font-family:-apple-system,"SF Pro Text",Roboto,"Helvetica Neue",Arial,sans-serif;color:#111;overscroll-behavior:none}
+:root{--bg:#fff;--tx:#000;--sub:#8a8a8e;--sep:#e5e5ea;--card:#f2f2f7;--blue:#0a84ff;box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#000;--tx:#fff;--card:#1c1c1e;--sep:#2c2c2e}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0}
+html,body{height:100%;background:#d9d9dc;font-family:-apple-system,"SF Pro Text",Roboto,"Segoe UI",Helvetica,Arial,sans-serif;overflow:hidden;color:var(--tx)}
 body{display:flex;align-items:center;justify-content:center}
-#phone{position:relative;width:390px;height:844px;max-height:100dvh;overflow:hidden;background:#000;border-radius:42px;box-shadow:0 0 0 1px #0002,0 8px 30px #0002;user-select:none}
-@media(max-width:500px){#phone{width:100%;height:100dvh;border-radius:0;box-shadow:none}}
-.L{position:absolute;inset:0}
-#sb{position:absolute;top:0;left:0;right:0;height:var(--sb);padding:env(safe-area-inset-top,0px) 22px 0;display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600;z-index:100;pointer-events:none;color:#fff}
-#phone[data-sb=d] #sb{color:#000}#sb svg{height:11px;margin-left:5px;fill:currentColor}
-#hb{position:absolute;bottom:0;left:0;right:0;height:26px;z-index:100;display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px;cursor:pointer}
-#hb i{width:120px;height:4px;border-radius:2px;background:#fff}#phone[data-sb=d] #hb i{background:#000}
-#lock{z-index:50;background:linear-gradient(170deg,#3b4a63,#6b5b6e 55%,#c28e7b);color:#fff;transition:transform .32s ease;display:flex;flex-direction:column;align-items:center;padding-top:calc(var(--sb) + 40px)}
-#lock.off{transform:translateY(-100%)}
-#lt{font-size:84px;font-weight:300;line-height:1;letter-spacing:-2px;margin-top:6px}#ld{font-size:19px;opacity:.9;font-weight:500}
-#ln{position:absolute;left:12px;right:12px;bottom:90px;display:flex;flex-direction:column;gap:8px}
-.nt{background:#fffc;color:#111;border-radius:18px;padding:10px 13px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;gap:10px;font-size:13.5px;cursor:pointer}
-.nt b{display:block;font-size:13.5px}.nt span{color:#333;display:block;line-height:1.3}.nt small{margin-left:auto;color:#555;font-size:12px}
-.ni{width:34px;height:34px;flex:none;border-radius:8px}
-#lh{position:absolute;bottom:40px;font-size:13px;opacity:.7}
-#home{z-index:5;background:linear-gradient(165deg,#1f3a4d,#3e6b7a 50%,#9db4a6);padding:calc(var(--sb) + 28px) 18px 0}
-.gr{display:grid;grid-template-columns:repeat(4,1fr);row-gap:22px}
-.ap{display:flex;flex-direction:column;align-items:center;gap:5px;color:#fff;font-size:11.5px;cursor:pointer}.ap svg{width:58px;height:58px;border-radius:14px;display:block;transition:transform .1s}.ap:active svg{transform:scale(.92)}
-#dock{position:absolute;left:12px;right:12px;bottom:34px;height:84px;border-radius:30px;background:#fff3;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);display:flex;justify-content:space-around;align-items:center}
-.app{position:absolute;inset:0;background:#fff;z-index:10;transform:scale(.25);opacity:0;pointer-events:none;border-radius:40px;transition:transform .26s ease,opacity .2s,border-radius .26s;overflow:hidden}
-.app.on{transform:none;opacity:1;pointer-events:auto;border-radius:0}
-.pg{position:absolute;inset:0;background:#fff;transform:translateX(100%);transition:transform .25s ease;overflow-y:auto;padding-top:var(--sb);z-index:3}.pg.on{transform:none}
-.scr{position:absolute;inset:var(--sb) 0 0;overflow-y:auto;padding-bottom:var(--bt)}
-.bar{display:flex;align-items:center;height:48px;padding:0 14px;gap:8px;font-size:17px}.bk{color:#0a7aff;cursor:pointer;font-size:17px;padding:8px 4px}
-.ti{font-size:32px;font-weight:700;padding:4px 18px 8px}
-.row{display:flex;align-items:center;gap:13px;padding:10px 16px;cursor:pointer}.row:active{background:#0001}
-.av{width:48px;height:48px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:500;font-size:19px;background-size:cover;background-position:center}
-.s{font-size:12.5px;color:#777}.tl{flex:1;min-width:0}.tl b{font-weight:500;font-size:16.5px;display:block}.tl span{display:block;font-size:14px;color:#667;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
-.tabs{position:absolute;bottom:0;left:0;right:0;height:calc(var(--bt) + 44px);padding-bottom:var(--bt);display:flex;background:#fffe;border-top:1px solid #0002;backdrop-filter:blur(14px);z-index:2}
-.tabs div{flex:1;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:#888;font-weight:500;cursor:pointer}.tabs .on{color:#0a7aff}
-#a-wa .tabs .on{color:var(--g)}
-.gd{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}.gd>*{aspect-ratio:1;background-size:cover;background-position:center;cursor:pointer}
-.mh{font-size:15px;font-weight:600;padding:12px 14px 6px}
-.al{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:6px 16px}.al>div{cursor:pointer;font-size:14px}.al .c{aspect-ratio:1;border-radius:8px;background-size:cover;margin-bottom:4px}
-#vw{position:absolute;inset:0;background:#000;z-index:20;display:none;color:#fff}#vw.on{display:block}
-#vs{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}#vs>div{flex:none;width:100%;scroll-snap-align:center;background-size:contain;background-repeat:no-repeat;background-position:center}
-#vt{position:absolute;top:var(--sb);left:0;right:0;height:46px;display:flex;align-items:center;padding:0 14px;background:#000a;font-size:16px;gap:10px}#vb{position:absolute;bottom:0;left:0;right:0;height:calc(var(--bt) + 40px);background:#000a;display:flex;justify-content:space-around;align-items:center;padding-bottom:var(--bt);font-size:13px}
-#mp{position:absolute;inset:0;background:#ebe7df;overflow:hidden}#mp>svg{position:absolute;inset:0;width:100%;height:100%}
-.pin{position:absolute;width:30px;height:38px;margin:-38px 0 0 -15px;cursor:pointer}.pin svg{width:30px;height:38px}
-#sch{position:absolute;top:calc(var(--sb) + 8px);left:12px;right:12px;height:44px;border-radius:22px;background:#fff;box-shadow:0 1px 6px #0003;display:flex;align-items:center;padding:0 16px;color:#777;font-size:15px;z-index:2}
-#sh{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:16px 16px 0 0;box-shadow:0 -2px 12px #0002;padding:8px 0 var(--bt);max-height:62%;overflow-y:auto;z-index:3}#sh .gb{width:36px;height:4px;border-radius:2px;background:#ccc;margin:0 auto 8px}.sd{padding:4px 18px 8px}.sd h2{font-size:21px;font-weight:600}.sd p{font-size:14.5px;line-height:1.45;color:#333;margin-top:8px}.sd img{width:100%;height:150px;border-radius:10px;margin-top:10px;object-fit:cover}
-.pl{display:flex;gap:12px;align-items:center;padding:9px 18px;cursor:pointer;font-size:15.5px}.pl i{width:30px;height:30px;border-radius:50%;background:#ea4335;display:block;flex:none}
-#a-notes,#a-settings{background:#f2f2f7}.ng{margin:0 16px;background:#fff;border-radius:12px;overflow:hidden}.ng .row{display:block;padding:10px 16px;border-bottom:1px solid #0001}.ng .row b{font-weight:600;font-size:16px;display:block}.ng .row span{font-size:14px;color:#888;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.nb{padding:6px 20px 40px;font-size:17px;line-height:1.4}.nb h1{font-size:25px;margin:4px 0 12px;line-height:1.2}.nb p{min-height:12px;margin-bottom:2px}.nd{text-align:center;font-size:12px;color:#999;padding-top:4px}
-.cb{display:inline-block;width:20px;height:20px;border-radius:50%;border:1.5px solid #c9a100;vertical-align:-4px;margin-right:9px;text-align:center;font-size:13px;line-height:17px;color:#fff}.cb.x{background:#e6b800;border-color:#e6b800}.cb.x+u{text-decoration:none;color:#999}u{text-decoration:none}
-.bl{padding-left:20px;position:relative}.bl:before{content:"•";position:absolute;left:4px}
-.wh{font-size:23px;font-weight:700;color:var(--g);padding:10px 16px 6px}
-.bdg{background:#25d366;color:#fff;border-radius:10px;min-width:20px;height:20px;font-size:12px;display:flex;align-items:center;justify-content:center;padding:0 6px;margin-top:4px;margin-left:auto}
-.ct{position:absolute;inset:0;background:#efeae2;z-index:4;transform:translateX(100%);transition:transform .25s}.ct.on{transform:none}
-.ch{position:absolute;top:0;left:0;right:0;background:#fff;padding-top:var(--sb);box-shadow:0 1px 2px #0002;z-index:2}.ch .bar{height:54px;padding:0 10px 0 4px}.ch .av{width:38px;height:38px;font-size:16px}
-.msgs{position:absolute;top:calc(var(--sb) + 54px);bottom:calc(var(--bt) + 50px);left:0;right:0;overflow-y:auto;padding:8px 10px;display:flex;flex-direction:column;gap:3px}
-.m{max-width:80%;padding:6px 8px 5px;border-radius:9px;font-size:15px;line-height:1.3;background:#fff;align-self:flex-start;box-shadow:0 1px .5px #0002}.m.me{background:#d9fdd3;align-self:flex-end}
-.m .n{font-size:12.5px;font-weight:600;margin-bottom:1px}.m .t{font-size:11px;color:#667781;float:right;margin:7px 0 0 10px}.m .t b{color:#53bdeb;font-weight:400;margin-left:2px}
-.m .im{width:210px;height:260px;border-radius:6px;background-size:cover;background-position:center;margin-bottom:1px}
-.dt{align-self:center;background:#fff;font-size:12px;color:#54656f;border-radius:7px;padding:4px 10px;margin:8px 0;box-shadow:0 1px .5px #0002}
-.inp{position:absolute;bottom:0;left:0;right:0;padding:6px 8px calc(var(--bt) - 8px);display:flex;gap:6px}.inp div{background:#fff;border-radius:22px;height:42px;flex:1;padding:12px 16px;color:#889;font-size:15px}.inp i{width:42px;height:42px;border-radius:50%;background:var(--g);flex:none}
-#call{z-index:200;background:linear-gradient(#2b3a42,#0b141a);color:#fff;display:none;overflow:hidden}
-#call.on{display:block}#rg{display:flex;flex-direction:column;align-items:center;padding-top:calc(var(--sb) + 90px)}#rg .av{width:120px;height:120px;font-size:46px}#rg h2{font-weight:400;font-size:28px;margin-top:22px;text-align:center;padding:0 20px}#rg p{opacity:.7;margin-top:6px;font-size:15px}
-.cbn{position:absolute;bottom:calc(var(--bt) + 50px);left:0;right:0;display:flex;justify-content:space-around;padding:0 50px}.cbn div{width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px}
-#vid{position:absolute;inset:0;background:#000;display:none}#vid.on{display:block}#vid video{width:100%;height:100%;object-fit:contain;background:#000}
-#vc{position:absolute;bottom:calc(var(--bt) + 20px);left:20px;right:20px;height:68px;border-radius:34px;background:#0009;display:flex;justify-content:space-around;align-items:center;transition:opacity .3s}
-#vc div{width:46px;height:46px;border-radius:50%;background:#fff2;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer}#vc .e{background:#ea0038}
-</style></head><body>
-<div id="phone" data-sb="l">
-<div id="sb"><span id="clk">9:41</span><span style="display:flex;align-items:center"><svg viewBox="0 0 17 11"><rect y="7" width="3" height="4" rx="1"/><rect x="4.7" y="5" width="3" height="6" rx="1"/><rect x="9.4" y="2.5" width="3" height="8.5" rx="1"/><rect x="14" width="3" height="11" rx="1"/></svg><svg viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.5" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="15" height="8" rx="2"/><rect x="23" y="4" width="2" height="4" rx="1" opacity=".5"/></svg></span></div>
-<div id="home" class="L"><div class="gr" id="gr"></div><div id="dock"></div></div>
-<div id="lock" class="L"><div id="ld"></div><div id="lt"></div><div id="ln"></div><div id="lh">Swipe up to unlock</div></div>
-<div id="apps"></div><div id="hb"><i></i></div>
-<div id="call" class="L"></div>
-</div>
+#phone{position:relative;width:100%;height:100%;overflow:hidden;background:#000;user-select:none}
+@media(min-width:520px){#phone{width:390px;height:844px;max-height:96vh;border-radius:44px;box-shadow:0 0 0 9px #111,0 10px 40px rgba(0,0,0,.25)}}
+.scr{position:absolute;inset:0}
+#sb{position:absolute;top:0;left:0;right:0;height:46px;padding:14px 26px 0;display:flex;justify-content:space-between;font-size:15px;font-weight:600;z-index:90;color:#fff;pointer-events:none;padding-top:max(14px,env(safe-area-inset-top))}
+#sb.d{color:var(--tx)}#sb i{display:inline-block;vertical-align:middle}
+.sig{width:17px;height:10px;background:linear-gradient(90deg,currentColor 20%,transparent 20% 27%,currentColor 27% 47%,transparent 47% 54%,currentColor 54% 74%,transparent 74% 81%,currentColor 81%);margin-right:5px}
+.bat{width:24px;height:11px;border:1px solid currentColor;border-radius:3.5px;padding:1px;margin-left:5px;opacity:.9}.bat b{display:block;height:100%;width:72%;background:currentColor;border-radius:1.5px}
+#hb{position:absolute;bottom:7px;left:50%;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:#fff;z-index:95;opacity:.9;cursor:pointer}
+#hb.d{background:var(--tx)}
+/* lock */
+#lock{background:linear-gradient(185deg,#2b3a55 0%,#6d5f7a 45%,#d29a7c 80%,#e9c39a 100%);color:#fff;z-index:60;transition:transform .3s ease}
+#lock.up{transform:translateY(-100%)}
+#lock .t{text-align:center;margin-top:92px;font-size:15px;font-weight:500;opacity:.9}
+#lock .c{text-align:center;font-size:84px;font-weight:300;line-height:1;letter-spacing:-2px;margin-top:2px}
+.nots{position:absolute;left:12px;right:12px;bottom:110px;display:flex;flex-direction:column;gap:8px}
+.not{background:rgba(235,235,240,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:20px;padding:10px 13px;color:#111;font-size:14px;display:flex;gap:10px;cursor:pointer}
+.not .ic{width:34px;height:34px;flex:none;border-radius:8px}.not b{display:block;font-size:14px}.not span{opacity:.75;display:block;font-size:13.5px;line-height:1.25}.not small{margin-left:auto;font-size:12px;opacity:.6}
+.hint{position:absolute;bottom:24px;width:100%;text-align:center;font-size:13px;opacity:.7}
+/* home */
+#home{background:linear-gradient(170deg,#3d4f6b,#7b6a86 50%,#c98f75);z-index:1}
+.grid{position:absolute;top:70px;left:0;right:0;padding:0 18px;display:grid;grid-template-columns:repeat(4,1fr);row-gap:22px}
+.ap{text-align:center;color:#fff;font-size:11.5px;cursor:pointer}.ap .ic{width:60px;height:60px;margin:0 auto 5px}
+.ap:active .ic,.dk .ic:active{filter:brightness(.7)}
+.ic{border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;overflow:hidden}
+.dock{position:absolute;bottom:22px;left:10px;right:10px;height:88px;border-radius:30px;background:rgba(255,255,255,.22);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);display:flex;justify-content:space-around;align-items:center;padding:0 8px}.dk .ic{width:58px;height:58px}
+.dots{position:absolute;bottom:118px;width:100%;text-align:center;color:#fff;font-size:8px;opacity:.7;letter-spacing:5px}
+/* apps */
+.app{position:absolute;inset:0;background:var(--bg);color:var(--tx);z-index:20;transform:scale(.25);opacity:0;pointer-events:none;border-radius:40px;overflow:hidden;transition:transform .26s cubic-bezier(.3,.7,.3,1),opacity .18s,border-radius .26s}
+.app.open{transform:none;opacity:1;pointer-events:auto;border-radius:0}
+.pg{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column;padding-top:max(46px,calc(env(safe-area-inset-top) + 32px));transition:transform .24s ease}
+.pg.in{transform:translateX(100%)}
+.sc{flex:1;overflow-y:auto;padding-bottom:40px;-webkit-overflow-scrolling:touch}
+.nav{display:flex;align-items:center;min-height:42px;padding:0 12px;color:var(--blue);font-size:17px;gap:4px}
+.nav .ti{flex:1;text-align:center;color:var(--tx);font-weight:600}.nav a{cursor:pointer;min-width:64px}
+h1{font-size:33px;font-weight:700;padding:4px 16px 8px;letter-spacing:-.5px}
+.row{display:flex;align-items:center;padding:11px 16px;gap:12px;cursor:pointer;border-bottom:.5px solid var(--sep)}
+.row:active{background:var(--card)}.sub{color:var(--sub);font-size:14px}
+.av{width:48px;height:48px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:18px}
+.tab{height:80px;border-top:.5px solid var(--sep);display:flex;justify-content:space-around;padding-top:8px;font-size:10px;color:var(--sub);background:var(--bg)}
+.tab div{text-align:center;cursor:pointer;width:25%}.tab div.on{color:#25a244}.tab em{display:block;font-style:normal;font-size:21px;line-height:26px}
+/* photos */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}.cell{aspect-ratio:1;position:relative;cursor:pointer;overflow:hidden}
+.cell>*{width:100%;height:100%;object-fit:cover;display:block}.dur{position:absolute;right:5px;bottom:4px;color:#fff;font-size:11px;font-weight:600;text-shadow:0 0 3px #000}
+.sec{font-weight:600;padding:14px 16px 6px;font-size:15px}
+.alb{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:8px 16px}.alb .cell{border-radius:8px}.alb p{font-size:14px;margin-top:5px}
+.viewer{position:absolute;inset:0;background:#000;z-index:30;display:flex;flex-direction:column;transition:opacity .2s}
+.vs{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory}.vs>div{flex:none;width:100%;scroll-snap-align:center;display:flex;align-items:center;justify-content:center}.vs>div>*{width:100%;max-height:100%;aspect-ratio:3/4;object-fit:cover}
+.vb{position:absolute;left:0;right:0;color:#fff;padding:0 14px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.45);font-size:17px;transition:opacity .2s}
+/* maps */
+.map{position:absolute;inset:0;background:#ebe8e0;overflow:hidden}.pin{position:absolute;width:26px;height:26px;margin:-26px 0 0 -13px;background:#ea4335;border-radius:50% 50% 50% 0;transform:rotate(-45deg);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.35)}.pin:after{content:"";position:absolute;inset:8px;background:#fff;border-radius:50%}.pin.on{background:#1a73e8;z-index:3}
+.sbar{position:absolute;top:max(54px,calc(env(safe-area-inset-top) + 40px));left:12px;right:12px;height:44px;background:var(--bg);border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.2);padding:0 14px;display:flex;align-items:center;color:var(--sub);font-size:16px;z-index:5}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--bg);border-radius:16px 16px 0 0;box-shadow:0 -2px 12px rgba(0,0,0,.18);padding:10px 0 34px;z-index:5;max-height:58%;overflow:auto}
+.sheet:before{content:"";display:block;width:36px;height:5px;border-radius:3px;background:var(--sep);margin:0 auto 8px}
+/* notes */
+.nrow{padding:10px 16px;cursor:pointer;margin:0 16px;border-bottom:.5px solid var(--sep)}.nrow b{display:block;font-weight:600}.grp{background:var(--card);border-radius:12px;margin:6px 16px 16px;overflow:hidden}.grp .row:last-child{border:0}
+.nb{padding:6px 18px 40px;font-size:17px;line-height:1.42}.nb h2{font-size:24px;margin:4px 0 2px}.nb .d{text-align:center;color:var(--sub);font-size:12px;margin:6px 0 12px}.ln{min-height:12px;padding:1px 0}.ck{display:inline-block;width:1.15em;color:#d4a017;font-size:1.05em}.bl{padding-left:20px;position:relative}.bl:before{content:"•";position:absolute;left:6px}
+/* cal */
+.cg{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;padding:0 10px;row-gap:6px;font-size:18px}.cg span{height:40px;line-height:40px}.cg .w{font-size:12px;color:var(--sub);height:22px;line-height:22px}.cg .on{background:#ff3b30;color:#fff;border-radius:50%;width:40px;margin:0 auto;font-weight:600}
+/* wa */
+.chat{background:#efe7dd;flex:1;overflow-y:auto;padding:10px 10px 14px;display:flex;flex-direction:column;gap:3px}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .chat{background:#0b141a}:root:not([data-theme=light]) .bb.i{background:#202c33}:root:not([data-theme=light]) .bb.o{background:#005c4b;color:#fff}}
+.bb{max-width:78%;padding:6px 9px 4px;border-radius:9px;font-size:15.5px;line-height:1.3;align-self:flex-start;background:#fff;color:#111;box-shadow:0 1px 1px rgba(0,0,0,.1);position:relative;margin-top:4px}
+.bb.o{align-self:flex-end;background:#d9fdd3}.bb .n{font-size:13px;font-weight:600;margin-bottom:1px}.bb .tm{font-size:11px;color:#667781;float:right;margin:7px 0 0 10px}.bb .tm.r{color:#53bdeb}
+.bb .im{width:220px;height:260px;border-radius:6px;margin-bottom:2px;overflow:hidden}.bb .im>*{width:100%;height:100%;object-fit:cover}
+.rx{position:absolute;bottom:-12px;left:8px;background:var(--bg);border-radius:12px;padding:0 5px;font-size:13px;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.day{align-self:center;background:#e1f3fb;color:#54656f;font-size:12px;padding:4px 10px;border-radius:8px;margin:8px 0}
+.inp{height:78px;padding:8px 10px 0;display:flex;gap:8px;background:var(--bg);color:var(--sub)}.inp div{flex:1;height:36px;border:1px solid var(--sep);border-radius:18px;padding:7px 14px}
+/* call */
+#call{z-index:80;background:linear-gradient(#27323a,#0d1418);color:#fff;display:none;flex-direction:column;align-items:center;padding-top:100px;text-align:center}
+#call.show{display:flex}#call h2{font-weight:500;font-size:28px;margin:16px 24px 6px}#call p{opacity:.7;font-size:16px}
+.btns{position:absolute;bottom:90px;left:0;right:0;display:flex;justify-content:space-around;padding:0 40px}.btns div{text-align:center;font-size:13px}.btns i{display:flex;width:68px;height:68px;border-radius:50%;margin:0 auto 8px;align-items:center;justify-content:center;font-style:normal;font-size:28px;cursor:pointer}
+#vid{position:absolute;inset:0;background:#000;display:none;z-index:85}#vid.show{display:block}#vid video{width:100%;height:100%;object-fit:contain;background:#000}
+.ctl{position:absolute;bottom:50px;left:0;right:0;display:flex;justify-content:center;gap:18px;transition:opacity .3s}.ctl i{width:56px;height:56px;border-radius:50%;background:rgba(60,60,60,.7);display:flex;align-items:center;justify-content:center;font-style:normal;color:#fff;font-size:22px}
+@keyframes pr{50%{transform:scale(1.4);opacity:0}}.ring{width:120px;height:120px;border-radius:50%;position:relative}.ring:after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.4);animation:pr 1.6s infinite}
+</style></head><body><div id="phone">
+<div id="sb"><span id="clk">9:41</span><span><i class="sig"></i><i style="font-size:13px">5G</i><i class="bat"><b></b></i></span></div>
+<div class="scr" id="home"><div class="grid" id="grid"></div><div class="dots">● ○</div><div class="dock dk" id="dock"></div></div>
+<div id="apps"></div><div class="scr" id="call"></div><div class="scr" id="vid"></div>
+<div class="scr" id="lock"><div class="t" id="ld"></div><div class="c" id="lt"></div><div class="nots" id="nots"></div><div class="hint">Swipe up to unlock</div></div>
+<div id="hb"></div></div>
 <script>
-/* ============ CONTENT: edit freely ============ */
-const me="Brinda";
-const people={Ishu:{c:"#7a5c8f",img:""},Devaanshi:{c:"#3d7a8c",img:""},Brinda:{c:"#b5694f",img:""},group:{c:"#5f7d6b",img:"",ini:"T"}}; // img: profile picture URL
-const groupName="Teen Tigaada Samajh Bigada";
-const videoAsset={src:"assets/birthday-call.mp4",poster:""}; // <- replace with your final video
-const galleryData=[ // photo: {src:"url or data URI", date:"Month Year"}; empty src = placeholder
- {name:"Camera Roll",photos:[{date:"October 2025"},{date:"October 2025"},{date:"October 2025"},{date:"September 2025"},{date:"September 2025"},{date:"August 2025"}]},
- {name:"Us",photos:[{date:"March 2025"},{date:"March 2025"},{date:"January 2025"}]},
- {name:"Evidence",photos:[{date:"June 2025"},{date:"May 2025"}]},
- {name:"Random",photos:[{date:"April 2025"},{date:"April 2025"},{date:"February 2025"},{date:"December 2024"}]},
- {name:"Do Not Ask",photos:[{date:"November 2024"},{date:"July 2024"}]}];
+/* ============ EDITABLE CONTENT ============ */
+const ME="Brinda Kheria";
+const videoAsset={src:"assets/group-call.mp4",poster:""}; // <- replace with your final video file/URL
+const ph=(src)=>src||"";
+const galleryData={ // src:"" shows a neutral placeholder; put photo/video URLs in src
+ library:[{m:"February 2022",items:[{src:""},{src:""}]},{m:"October 2025",items:[{src:""},{src:""},{src:""}]},{m:"September 2026",items:[{src:""}]}],
+ albums:[{name:"Camera Roll",items:[{src:""},{src:""},{src:""}]},
+  {name:"Us",items:[{src:""},{src:""},{src:""},{src:""},{src:""},{src:""},{src:"",video:1,dur:"0:24"}]},
+  {name:"Evidence",items:[{src:"",video:1,dur:"0:09"},{src:"",video:1,dur:"0:31"},{src:"",video:1,dur:"0:14"}]}]};
 const mapLocations=[
- {name:"J. D. Birla Institute",x:62,y:30,desc:"Three strangers.\n\nOne college.\n\nOne Valentine's Day.\n\nSomehow this happened.",img:""},
- {name:"Silver Spring Apartments",x:30,y:52,desc:"Music.\n\nFood.\n\nRandom conversations.\n\n3 a.m. nonsense.\n\nProbably no sleep but 100 memories",img:""},
- {name:"Roots & LMNOQ",x:70,y:66,desc:"Brunchs\n\nMusic\n\nDancing\n\nBurned Hands",img:""}];
+ {name:"J. D. Birla Institute",x:30,y:30,desc:"Saved place",lines:["Three strangers.","One college.","One Valentine's Day.","Somehow this happened."]},
+ {name:"Silver Spring Apartments",x:68,y:24,desc:"Saved place",lines:["Music.","Food.","Random conversations.","3 a.m. nonsense.","Probably no sleep but 100 memories"]},
+ {name:"Roots & LMNOQ",x:52,y:48,desc:"Saved place",lines:["Brunches","Music","Dancing","Burnt Hands","Horrified Staff","Toilet turned into beds"]},
+ {name:"South City",x:24,y:64,desc:"Saved place",lines:["Birthday Shopping","Gift Shopping","ZARA","Bowling (trying)","Mc Donalds"]},
+ {name:"Unknown Location",x:75,y:72,desc:"Dropped pin",lines:["Someday","3 people","mental peace","unlimited alcohol","a trip that WILL HAPPEN"]}];
 const notesData=[
- {t:"Things We Need To Do Before We're 30",d:"Yesterday",b:["[ ] Take the trip","[x] Take a decent trio picture","[ ] Recreate an old photo","[ ] Have one completely spontaneous plan","[ ] Go somewhere none of us have been","[x] Stay up until sunrise","[x] Make a plan and actually follow it","[ ] Figure out our lives","[ ] Pretend we have figured out our lives","[ ] Stop adding things to this list","","[ ] Actually become responsible adults"]},
- {t:"Do Not Let Brinda Choose",d:"Tuesday",b:["Decisions requiring group supervision:","• Restaurants","• Trips","• Plans","• Timing","• \"Should I do this?\"","• \"Should I buy this?\"","• Any decision where she says \"I don't know\"","• Any decision where she says \"you decide\"","• Any decision where she says \"whatever you guys want\"","","Emergency protocol:","Ask Ishu.","","If Ishu doesn't know:","Ask Devaanshi.","","If Devaanshi doesn't know:","We're fucked."]},
- {t:"TRIO TRIP",d:"14/09/25",b:["Status: Discussed","Status: Discussed again","Status: Discussed again","Status: Still discussed","Status: No tickets booked","","Possible destinations:","• Bali","• Somewhere in the mountains","• Somewhere with good food","• Somewhere none of us have to do anything","• \"We'll decide later\"","","People who have said \"we should actually do this\":","All three.","","People who have actually planned it:","None.","","Projected departure:","Classified."]},
- {t:"Rules of the Trio",d:"02/08/25",b:["• If one person says \"let's go,\" nobody asks too many questions.","• If Brinda says \"I'm fine,\" investigate.","• If Ishu says \"nothing,\" investigate harder.","• If Devaanshi says \"I have an idea,\" be concerned.","• Nobody is allowed to look good in every photo.","• One embarrassing photo of everyone must be retained forever.","• Plans are suggestions.","• \"I'm leaving in 5\" means nothing.","• If the conversation makes sense to outsiders, something has gone wrong.","• Nobody is allowed to get married without notifying the group chat first."]},
- {t:"BEFORE WE GO OUT",d:"21/06/25",b:["[ ] Clothes","[ ] Clothes again","[ ] Accessories","[ ] Ishu's permission","[ ] Brinda's gaadi","[ ] How much are we drinking?","[ ] Budget?","[ ] Clothes again because apparently this is still unresolved","","Departure time: TBD","Actual departure time: 45 minutes later"]}];
-const contactsData=[{n:"Devaanshi Agarwal",note:"Emergency contact · might never pick up",p:"Devaanshi"},{n:"Ishu Sonkar",note:"Emergency contact · might never pick up",p:"Ishu"}];
+ {t:"Things We Need To Do Before We're 30",d:"12/08/2026",b:`[ ] Take the trip
+[x] Take a decent trio picture
+[ ] Recreate an old photo
+[ ] Have one completely spontaneous plan
+[ ] Go somewhere none of us have been
+[x] Stay up until sunrise
+[x] Make a plan and actually follow it
+[ ] Figure out our lives
+[ ] Pretend we have figured out our lives
+[ ] Stop adding things to this list
+
+[ ] Actually become responsible adults`},
+ {t:"Do Not Let Brinda Choose",d:"03/06/2026",b:`Decisions requiring group supervision:
+- Restaurants
+- Trips
+- Plans
+- Timing
+- "Should I do this?"
+- "Should I buy this?"
+- Any decision where she says "I don't know"
+- Any decision where she says "you decide"
+- Any decision where she says "whatever you guys want"
+
+Emergency protocol:
+Ask Ishu.
+
+If Ishu doesn't know:
+Ask Devaanshi.
+
+If Devaanshi doesn't know:
+We're fucked.`},
+ {t:"TRIO TRIP",d:"21/09/2026",b:`Status: Discussed
+Status: Discussed again
+Status: Discussed again
+Status: Still discussed
+Status: No tickets booked
+
+Possible destinations:
+- Bali
+- Somewhere in the mountains
+- Somewhere with good food
+- Somewhere none of us have to do anything
+- "We'll decide later"
+
+People who have said "we should actually do this":
+All three.
+
+People who have actually planned it:
+None.
+
+Projected departure:
+Classified.`},
+ {t:"Rules of the Trio",d:"17/05/2026",b:`- If one person says "let's go," nobody asks too many questions.
+- If Brinda says "I'm fine," investigate.
+- If Ishu says "nothing," investigate harder.
+- If Devaanshi says "I have an idea," be concerned.
+- Nobody is allowed to look good in every photo.
+- One embarrassing photo of everyone must be retained forever.
+- Plans are suggestions.
+- "I'm leaving in 5" means nothing.
+- If the conversation makes sense to outsiders, something has gone wrong.
+- Nobody is allowed to get married without notifying the group chat first.`},
+ {t:"BEFORE WE GO OUT",d:"30/09/2026",b:`[ ] Clothes
+[ ] Clothes again
+[ ] Accessories
+[ ] Ishu's permission
+[ ] Brinda's gaadi
+[ ] How much are we drinking?
+[ ] Budget?
+[ ] Clothes again because apparently this is still unresolved
+
+Departure time: TBD
+Actual departure time: 45 minutes later`}];
+const contactsData=[
+ {n:"Devaanshi Agarwal",ph:"+91 98XXX XXXXX",note:"Probably on silent",em:1,c:"#c0607a"},
+ {n:"Ishu Sonkar",ph:"+91 97XXX XXXXX",note:"Probably sleeping",em:1,c:"#4c8c8a"},
+ {n:"Mom",ph:"+91 99XXX XXXXX",note:"",c:"#8a6bbf"}];
+const people={Ishu:"#c2410c",Devaanshi:"#7c3aed",Brinda:"#0e7490"};
 const groupChatMessages=[
- {d:"Saturday"},
- {f:"Ishu",t:"guys",tm:"11:41 pm"},{f:"Ishu",t:"kahi chalna hai?",tm:"11:41 pm"},{f:"Brinda",t:"haan",tm:"11:42 pm"},{f:"Devaanshi",t:"chalo trip pe",tm:"11:42 pm"},{f:"Ishu",t:"zaroor kyun nahi",tm:"11:43 pm"},{f:"Brinda",t:"bakwas nahi karo",tm:"11:43 pm"},{f:"Ishu",t:"Shaadi ke baad pakka",tm:"11:44 pm"},{f:"Devaanshi",t:"💀",tm:"11:44 pm"},
+ {d:"Yesterday"},
+ {f:"Ishu",t:"guys",tm:"6:12 pm"},{f:"Ishu",t:"kahi chalna hai?",tm:"6:12 pm"},{f:"Brinda",t:"haan",tm:"6:14 pm"},
+ {f:"Devaanshi",t:"chalo trip pe",tm:"6:14 pm"},{f:"Ishu",t:"zaroor kyun nahi",tm:"6:15 pm"},{f:"Brinda",t:"bakwas nahi karo",tm:"6:15 pm"},
+ {f:"Ishu",t:"Shaadi ke baad pakka",tm:"6:16 pm"},{f:"Devaanshi",t:"💀",tm:"6:16 pm"},
  {d:"Today"},
- {f:"Devaanshi",img:"",tm:"4:12 pm"},{f:"Ishu",t:"BEST",tm:"4:12 pm"},{f:"Brinda",t:"WHY DO YOU HAVE THIS DELETE",tm:"4:13 pm"},{f:"Devaanshi",t:"evidence",tm:"4:13 pm"},{f:"Ishu",t:"keeping this forever",tm:"4:14 pm"},{f:"Brinda",t:"you people are horrible",tm:"4:14 pm"},{f:"Devaanshi",t:"❤️",tm:"4:15 pm"}];
-const privateChatMessages={
- Ishu:[{d:"Today"},{f:"Ishu",t:"kahan hai?",tm:"8:02 pm"},{f:"Brinda",t:"ghar",tm:"8:02 pm"},{f:"Brinda",t:"kyun?",tm:"8:02 pm"},{f:"Ishu",t:"Nik-Nak chalegi?",tm:"8:03 pm"},{f:"Brinda",t:"chalo",tm:"8:03 pm"},{f:"Ishu",t:"nikal ke call karta hai",tm:"8:04 pm"},{f:"Brinda",t:"okay",tm:"8:04 pm"},{f:"Ishu",t:"ready rehna idiot",tm:"8:05 pm"}],
- Devaanshi:[{d:"Today"},{f:"Devaanshi",t:"ek phone nahi uthaya jaata hai tumse",tm:"9:16 pm"},{f:"Brinda",t:"kaunsa call?",tm:"9:16 pm"},{f:"Devaanshi",t:"group call",tm:"9:16 pm"},{f:"Brinda",t:"kyun? kya hua?",tm:"9:17 pm"},{f:"Devaanshi",t:"UTHAOOOOOO",tm:"9:17 pm"},{f:"Brinda",t:"chilla kyun rahi hai",tm:"9:17 pm"}]};
-const chatList=[{id:"group",name:groupName,p:"group",msgs:groupChatMessages,time:"4:15 pm",unread:0},{id:"Devaanshi",name:"Devaanshi",p:"Devaanshi",msgs:privateChatMessages.Devaanshi,time:"9:17 pm",unread:1},{id:"Ishu",name:"Ishu",p:"Ishu",msgs:privateChatMessages.Ishu,time:"8:05 pm",unread:1}];
-const callHistory=[{name:groupName,p:"group",kind:"Missed",when:"Today, 9:14 pm",missed:1,go:1},{name:"Ishu",p:"Ishu",kind:"Outgoing",when:"Yesterday, 10:30 pm"},{name:"Devaanshi",p:"Devaanshi",kind:"Incoming",when:"Tuesday, 1:12 am"}];
+ {f:"Devaanshi",img:"",t:"",tm:"11:02 am"},{f:"Ishu",t:"BEST",tm:"11:02 am"},
+ {f:"Brinda",t:"WHY DO YOU HAVE THIS DELETE",tm:"11:03 am"},{f:"Devaanshi",t:"evidence",tm:"11:03 am"},
+ {f:"Ishu",t:"keeping this forever",tm:"11:04 am"},{f:"Brinda",t:"you people are horrible",tm:"11:04 am"},{f:"Devaanshi",t:"❤️",tm:"11:05 am"}];
+const ishuChatMessages=[{d:"Today"},{f:"Ishu",t:"kahan hai?",tm:"4:40 pm"},{f:"Brinda",t:"ghar kyun?",tm:"4:41 pm"},{f:"Ishu",t:"Nik-Nak chalegi?",tm:"4:41 pm"},{f:"Brinda",t:"chalo",tm:"4:42 pm"},{f:"Ishu",t:"nikal ke call karta hai",tm:"4:42 pm"},{f:"Brinda",t:"okay",tm:"4:43 pm"},{f:"Ishu",t:"ready rehna idiot",tm:"4:43 pm"}];
+const devaanshiChatMessages=[{d:"Today"},{f:"Devaanshi",t:"ek phone nahi uthaya jaata hai tumse",tm:"5:20 pm"},{f:"Brinda",t:"kaunsa call?",tm:"5:20 pm"},{f:"Devaanshi",t:"group call",tm:"5:21 pm"},{f:"Brinda",t:"kyun? kya hua?",tm:"5:21 pm"},{f:"Devaanshi",t:"UTHAOOOOOO",tm:"5:21 pm"},{f:"Brinda",t:"chilla kyun rahi hai",tm:"5:22 pm"}];
+const momChatMessages=[{d:"Yesterday"},{f:"Mom",t:"Khana kha liya?",tm:"8:45 pm"},{f:"Brinda",t:"haan mummy",tm:"8:50 pm"}]; // opening this chat triggers the group video call
+const GROUP="Teen Tigaada Samajh Bigada";
+const chatList=[
+ {id:"mom",n:"Mom",c:"#8a6bbf",msgs:momChatMessages,last:"haan mummy",tm:"8:50 pm",trigger:1},
+ {id:"ishu",n:"Ishu Sonkar",c:"#4c8c8a",msgs:ishuChatMessages,last:"ready rehna idiot",tm:"4:43 pm",un:1},
+ {id:"dev",n:"Devaanshi Agarwal",c:"#c0607a",msgs:devaanshiChatMessages,last:"chilla kyun rahi hai",tm:"5:22 pm"},
+ {id:"grp",n:GROUP,c:"#d08a3a",msgs:groupChatMessages,last:"Devaanshi: ❤️",tm:"11:05 am",group:1,un:3}];
+// put the group first (most recent) in the list
+const callHistory=[
+ {n:GROUP,c:"#d08a3a",kind:"Group video call",when:"Today, 5:23 pm",missed:1,group:1,video:1},
+ {n:"Mom",c:"#8a6bbf",kind:"Voice call",when:"Yesterday, 8:31 pm"},
+ {n:"Ishu Sonkar",c:"#4c8c8a",kind:"Voice call",when:"Monday, 11:52 pm"},
+ {n:"Devaanshi Agarwal",c:"#c0607a",kind:"Video call",when:"Sunday, 2:10 am"}];
+const settingsData=[
+ {g:[["Brinda Kheria","Apple ID, iCloud, Media & Purchases","Mostly screenshots and group chat media"]]},
+ {g:[["Wi-Fi","Ishu's hotspot","Ishu says it's not a hotspot, it's a favour."],["Bluetooth","Devaanshi's speaker","Probably still connected from last time."],["Mobile Data","On","Gone by the 10th. Every month."]]},
+ {g:[["Notifications","4,382 unread","Group chat is 4,300 of those."],["Focus","Do Not Disturb","Everyone ignores it anyway."],["Screen Time","Don't ask","7h 14m daily average. Allegedly."]]},
+ {g:[["Battery","12%","It's always 12%."],["Privacy & Security","Nothing is","Evidence album: noted."],["Storage","Almost full","Mostly evidence."],["Camera","Best friends mode","Terrible angles by Devaanshi."]]},
+ {g:[["Maps","Saved places: 5","One of them hasn't happened yet."],["Alarms","7 set","None of them are working."],["About","Brinda's iPhone","Software version: 22.0 (since 14/10/2003)."]]}];
+const icons={Photos:"#fff|conic-gradient(#f9d423,#ff4e50,#8e44ad,#3498db,#2ecc71,#f9d423)",Maps:"#e6f2e1|linear-gradient(#cfe6c8,#f3efe0)",Notes:"#fff|linear-gradient(#ffd60a 22%,#fffbe6 22%)",Calendar:"#fff|#fff",Settings:"#fff|linear-gradient(#a2a2a8,#6e6e73)",Contacts:"#fff|linear-gradient(#9a9aa0,#6d6d73)",WhatsApp:"#fff|linear-gradient(#3fd95b,#12a73b)"};
 /* ============ ENGINE ============ */
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],ph=$("#phone");
-const mon=["January","February","March","April","May","June","July","August","September","October","November","December"],days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-const hue=s=>{let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))%360;return h};
-const bg=(src,k)=>src?`background-image:url('${src}')`:`background:hsl(${hue(k)} 9% ${48+hue(k+"x")%22}%)`;
-const avatar=p=>{const o=people[p]||people.group;return `<div class="av" style="${o.img?`background-image:url('${o.img}')`:`background:${o.c}`}">${o.img?"":(o.ini||p[0])}</div>`};
-const ic=(b,i)=>`<svg viewBox="0 0 58 58"><rect width="58" height="58" fill="${b}"/>${i}</svg>`;
-const I={
-photos:ic("#fff",`<g opacity=".85"><circle cx="29" cy="18" r="10" fill="#f6a823"/><circle cx="40" cy="29" r="10" fill="#ea4c3c"/><circle cx="29" cy="40" r="10" fill="#4aa3f0"/><circle cx="18" cy="29" r="10" fill="#34b86a"/></g>`),
-maps:ic("#e8efe0",`<path d="M-5 45L60 20" stroke="#fff" stroke-width="9"/><path d="M30 0V58" stroke="#f7d36a" stroke-width="5"/><path d="M29 14a8 8 0 0 1 8 8c0 6-8 14-8 14s-8-8-8-14a8 8 0 0 1 8-8z" fill="#ea4335"/><circle cx="29" cy="22" r="3" fill="#fff"/>`),
-notes:ic("#fff",`<rect width="58" height="17" fill="#f5c518"/><path d="M10 29h38M10 38h38M10 47h24" stroke="#ddd" stroke-width="2"/>`),
-wa:ic("#25d366",`<path d="M29 12a17 17 0 0 0-14.700 25.500L12 46l8.800-2.300A17 17 0 1 0 29 12z" fill="none" stroke="#fff" stroke-width="3"/><path d="M23 22c-1 2 0 5 3 8s6 4 8 3l1-3-3-2-2 1c-2-1-3-2-4-4l1-2-2-3z" fill="#fff"/>`),
-settings:ic("#8e8e93",`<circle cx="29" cy="29" r="12" fill="none" stroke="#eee" stroke-width="7" stroke-dasharray="4 3.200"/><circle cx="29" cy="29" r="9" fill="#eee"/><circle cx="29" cy="29" r="4" fill="#8e8e93"/>`),
-contacts:ic("#a2a2a8",`<circle cx="29" cy="23" r="8" fill="#fff"/><path d="M12 48c2-11 10-14 17-14s15 3 17 14z" fill="#fff"/>`),
-camera:ic("#3a3a3c",`<rect x="9" y="18" width="40" height="27" rx="5" fill="#ddd"/><circle cx="29" cy="31" r="9" fill="#3a3a3c"/><circle cx="29" cy="31" r="5" fill="#666"/>`),
-clock:ic("#111",`<circle cx="29" cy="29" r="19" fill="#fff"/><path d="M29 16v14l9 5" stroke="#111" stroke-width="3" fill="none"/>`),
-phone:ic("#34c759",`<path d="M20 14l5 1 2 7-4 3c2 5 5 8 10 10l3-4 7 2 1 5c0 4-5 6-10 4C22 38 14 28 14 20c0-4 3-6 6-6z" fill="#fff"/>`),
-msg:ic("#34c759",`<path d="M29 15c10 0 17 6 17 14s-7 14-17 14l-9 4 2-7c-5-2-8-6-8-11 0-8 7-14 15-14z" fill="#fff"/>`)};
-const apps=[["photos","Photos"],["maps","Maps"],["notes","Notes"],["wa","WhatsApp"],["settings","Settings"],["contacts","Contacts"]];
-const mk=(k,l,s)=>`<div class="ap" data-a="${k}" ${s||""}>${I[k]}${l?`<span>${l}</span>`:""}</div>`;
-$("#gr").innerHTML=apps.map(a=>mk(a[0],a[1])).join("")+mk("clock","Clock",'style="grid-column:4"');
-$("#dock").innerHTML=["phone","msg","camera"].map(k=>mk(k,"")).join("");
-$("#apps").innerHTML=apps.map(a=>`<div class="app" id="a-${a[0]}"></div>`).join("");
-let open=null,locked=true;
-function tick(){const d=new Date(),h=d.getHours()%12||12,m=String(d.getMinutes()).padStart(2,"0");$("#clk").textContent=h+":"+m;$("#lt").textContent=h+":"+m;$("#ld").textContent=days[d.getDay()]+", "+d.getDate()+" "+mon[d.getMonth()]}
-tick();setInterval(tick,15000);
-const sb=v=>ph.dataset.sb=v;
-function openApp(k,el){if(open)return;const a=$("#a-"+k),r=el?el.getBoundingClientRect():null,p=ph.getBoundingClientRect();a.style.transformOrigin=r?`${r.left+r.width/2-p.left}px ${r.top+r.height/2-p.top}px`:"50% 100%";a.classList.add("on");open=k;sb("d")}
-function goHome(){if(locked||!open)return;if($("#call.on")){end();return}$$(".app.on").forEach(a=>a.classList.remove("on"));open=null;sb("l");$$(".pg.on,.ct.on,#vw.on").forEach(x=>x.classList.remove("on"))}
-$("#hb").onclick=goHome;
-const tap=e=>{const a=e.target.closest(".ap");if(a&&$("#a-"+a.dataset.a))openApp(a.dataset.a,a)};$("#gr").onclick=$("#dock").onclick=tap;
-function unlock(then){locked=false;$("#lock").classList.add("off");if(then)setTimeout(()=>openApp(then),150)}
-let y0=null;const lk=$("#lock");lk.onpointerdown=e=>y0=e.clientY;lk.onpointerup=e=>{if(y0!==null&&!e.target.closest(".nt")&&(y0-e.clientY>50||Math.abs(y0-e.clientY)<8))unlock();y0=null};
-const sm=k=>I[k].replace("<svg",'<svg class="ni"');
-$("#ln").innerHTML=`<div class="nt" data-a="wa">${sm("wa")}<div><b>Devaanshi</b><span>UTHAOOOOOO</span></div><small>9:17 pm</small></div><div class="nt" data-a="wa">${sm("wa")}<div><b>Ishu</b><span>ready rehna idiot</span></div><small>8:05 pm</small></div><div class="nt" data-a="notes">${sm("notes")}<div><b>BEFORE WE GO OUT</b><span>Clothes again because apparently this is still unresolved</span></div><small>Sat</small></div>`;
-$("#ln").onclick=e=>{const n=e.target.closest(".nt");if(n)unlock(n.dataset.a)};
-/* PHOTOS */
-(()=>{const A=$("#a-photos"),all=galleryData[0].photos;let tab="lib";
-const lib=()=>`<div class="ti">Library</div>`+[...new Set(all.map(p=>p.date))].map(m=>`<div class="mh">${m}</div><div class="gd">${all.map((p,i)=>p.date==m?`<div data-i="${i}" data-al="0" style="${bg(p.src,"0"+i)}"></div>`:"").join("")}</div>`).join("");
-const albums=()=>`<div class="ti">Albums</div><div class="al">${galleryData.map((a,i)=>`<div data-al="${i}" data-o="1"><div class="c" style="${bg(a.photos[0].src,a.name)}"></div>${a.name}<div class="s">${a.photos.length}</div></div>`).join("")}</div>`;
-A.innerHTML=`<div class="scr" id="pm" style="padding-bottom:90px"></div><div class="tabs"><div class="on" data-t="lib">Library</div><div data-t="alb">Albums</div></div><div class="pg" id="pgrid"></div><div id="vw"><div id="vs"></div><div id="vt"><span class="bk" style="color:#fff" id="vbk">‹ Back</span><span id="vdt" style="margin:auto"></span></div><div id="vb"><span>Share</span><span>Favourite</span><span>Edit</span><span>Delete</span></div></div>`;
-const draw=()=>$("#pm").innerHTML=tab=="lib"?lib():albums();draw();
-const show=(ai,i)=>{const ps=galleryData[ai].photos;$("#vs").innerHTML=ps.map((p,k)=>`<div style="${p.src?bg(p.src):`background:hsl(${hue(ai+"v"+k)} 9% 55%);background-size:70% 60%;background-origin:content-box`}"></div>`).join("");$("#vw").classList.add("on");const v=$("#vs");v.scrollLeft=i*v.clientWidth;const u=()=>{$("#vdt").textContent=ps[Math.round(v.scrollLeft/v.clientWidth)]?.date||""};v.onscroll=u;u()};
-A.onclick=e=>{const t=e.target.closest(".tabs div");if(t){tab=t.dataset.t;$$("#a-photos .tabs div").forEach(x=>x.classList.toggle("on",x==t));draw();return}
-if(e.target.id=="vbk"){$("#vw").classList.remove("on");return}
-const c=e.target.closest("[data-i]");if(c){show(+c.dataset.al,+c.dataset.i);return}
-const al=e.target.closest("[data-o]");if(al){const i=+al.dataset.al;$("#pgrid").innerHTML=`<div class="bar"><span class="bk" id="gbk">‹ Albums</span></div><div class="ti">${galleryData[i].name}</div><div class="gd">${galleryData[i].photos.map((p,k)=>`<div data-i="${k}" data-al="${i}" style="${bg(p.src,i+"g"+k)}"></div>`).join("")}</div>`;$("#pgrid").classList.add("on")}
-if(e.target.id=="gbk")$("#pgrid").classList.remove("on")}})();
-/* MAPS */
-(()=>{const A=$("#a-maps");
-A.innerHTML=`<div id="mp"><svg viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"><path d="M0 700C100 650 200 720 390 640V844H0z" fill="#aad3df"/><rect x="200" y="380" width="120" height="70" rx="8" fill="#cfe5c2"/><rect x="30" y="150" width="90" height="80" rx="8" fill="#cfe5c2"/><g stroke="#fff" stroke-width="9" fill="none"><path d="M-10 300L400 240"/><path d="M0 520L400 470"/><path d="M130 0L170 700"/><path d="M270 0L250 700"/></g><path d="M-10 410L400 100" stroke="#f6d98a" stroke-width="5" fill="none"/><g stroke="#fff" stroke-width="4" fill="none"><path d="M60 0L90 700M340 0L330 700M0 180L400 160M0 620L400 580"/></g></svg>${mapLocations.map((l,i)=>`<div class="pin" data-i="${i}" style="left:${l.x}%;top:${l.y}%"><svg viewBox="0 0 30 38"><path d="M15 0a15 15 0 0 1 15 15c0 11-15 23-15 23S0 26 0 15A15 15 0 0 1 15 0z" fill="#ea4335"/><circle cx="15" cy="15" r="5.500" fill="#fff"/></svg></div>`).join("")}<div id="sch">Search here</div><div id="sh"></div></div>`;
-const list=()=>$("#sh").innerHTML=`<div class="gb"></div><div style="padding:0 18px 6px;font-weight:600;font-size:17px">Saved places</div>`+mapLocations.map((l,i)=>`<div class="pl" data-i="${i}"><i></i>${l.name}</div>`).join("");list();
-A.onclick=e=>{const p=e.target.closest("[data-i]");if(p){const l=mapLocations[p.dataset.i];$("#sh").innerHTML=`<div class="gb"></div><div class="sd"><h2>${l.name}</h2><p>${l.desc.replace(/\n/g,"<br>")}</p>${l.img?`<img src="${l.img}">`:""}</div><div class="pl" id="mb" style="color:#0a7aff">‹ Saved places</div>`;return}
-if(e.target.closest("#mb")||e.target.closest("#mp")&&!e.target.closest("#sh"))list()}})();
-/* NOTES */
-(()=>{const A=$("#a-notes");const body=n=>n.b.map(l=>l.startsWith("[")?`<p><span class="cb ${l[1]=="x"?"x":""}">${l[1]=="x"?"✓":""}</span><u>${l.slice(4)}</u></p>`:l.startsWith("• ")?`<p class="bl">${l.slice(2)}</p>`:`<p>${l}</p>`).join("");
-A.innerHTML=`<div class="scr"><div class="ti" style="padding-top:12px">Notes</div><div class="ng">${notesData.map((n,i)=>`<div class="row" data-i="${i}"><b>${n.t}</b><span>${n.d} &nbsp; ${n.b.find(x=>x)?.replace(/^\[.\] |^• /,"")}</span></div>`).join("")}</div><div class="s" style="text-align:center;padding:14px">${notesData.length} Notes</div></div><div class="pg" id="npg"></div>`;
-A.onclick=e=>{const r=e.target.closest(".row");if(r){const n=notesData[r.dataset.i];$("#npg").innerHTML=`<div class="bar"><span class="bk" id="nbk" style="color:#c9a100">‹ Notes</span></div><div class="nb"><div class="nd">${n.d}</div><h1>${n.t}</h1>${body(n)}</div>`;$("#npg").classList.add("on")}if(e.target.id=="nbk")$("#npg").classList.remove("on")}})();
-/* CONTACTS + SETTINGS */
-(()=>{$("#a-contacts").innerHTML=`<div class="scr"><div class="ti" style="padding-top:12px">Contacts</div>`+contactsData.map(c=>`<div class="row">${avatar(c.p)}<div class="tl"><b>${c.n}</b><span>${c.note}</span></div></div>`).join("")+`</div>`;
-const st=["Wi‑Fi","Bluetooth","Mobile network","Notifications","Sound","Display","Battery","Storage","About phone"];
-$("#a-settings").innerHTML=`<div class="scr"><div class="ti" style="padding-top:12px">Settings</div><div class="ng"><div class="row" style="display:flex">${avatar("Brinda")}<div class="tl"><b>Brinda Kheria</b><span>Personal account</span></div></div></div><div class="ng" style="margin-top:16px">${st.map(s=>`<div class="row"><b style="font-weight:400">${s}</b></div>`).join("")}</div></div>`})();
-/* WHATSAPP */
-(()=>{const A=$("#a-wa");let tab="c";
-const msgHTML=(m,g)=>m.d?`<div class="dt">${m.d}</div>`:`<div class="m ${m.f==me?"me":""}">${g&&m.f!=me?`<div class="n" style="color:hsl(${hue(m.f)} 55% 38%)">${m.f}</div>`:""}${m.img!==undefined?`<div class="im" style="${bg(m.img,m.f+m.tm)}"></div>`:""}${m.t||""}<span class="t">${m.tm}${m.f==me?"<b>✓✓</b>":""}</span></div>`;
-const draw=()=>{$("#wl").innerHTML=tab=="c"?`<div class="wh">WhatsApp</div>`+chatList.map(c=>{const l=c.msgs[c.msgs.length-1];return `<div class="row" data-c="${c.id}">${avatar(c.p)}<div class="tl"><b>${c.name}</b><span>${l.f==me?"✓✓ ":c.p=="group"?l.f+": ":""}${l.t||"📷 Photo"}</span></div><div style="text-align:right"><div class="s" style="${c.unread?"color:#25d366":""}">${c.time}</div>${c.unread?`<div class="bdg">${c.unread}</div>`:""}</div></div>`}).join(""):tab=="k"?`<div class="wh">Calls</div>`+callHistory.map(c=>`<div class="row" data-k="${c.go?1:0}">${avatar(c.p)}<div class="tl"><b style="${c.missed?"color:#d93025":""}">${c.name}</b><span>${c.kind=="Outgoing"?"↗":"↙"} ${c.when}</span></div><span style="color:var(--g);font-size:20px">${c.go?"▭":"✆"}</span></div>`).join(""):`<div class="wh">Settings</div><div class="row">${avatar("Brinda")}<div class="tl"><b>Brinda</b><span>Hey there! I am using WhatsApp.</span></div></div>`;$$("#a-wa .tabs div").forEach(x=>x.classList.toggle("on",x.dataset.t==tab))};
-A.innerHTML=`<div class="scr" id="wl" style="padding-bottom:90px"></div><div class="tabs"><div data-t="c">Chats</div><div data-t="k">Calls</div><div data-t="s">Settings</div></div><div class="ct" id="ct"></div>`;draw();
-A.onclick=e=>{const t=e.target.closest(".tabs div");if(t){tab=t.dataset.t;draw();return}
-const r=e.target.closest("[data-c]");if(r){const c=chatList.find(x=>x.id==r.dataset.c),g=c.p=="group";c.unread=0;
-$("#ct").innerHTML=`<div class="ch"><div class="bar"><span class="bk" id="cbk" style="color:#111;font-size:26px">‹</span>${avatar(c.p)}<div class="tl"><b style="font-size:16.500px;font-weight:600">${c.name}</b><span style="margin:0;font-size:12px">${g?"Devaanshi, Ishu, You":"online"}</span></div></div></div><div class="msgs" id="mg">${c.msgs.map(m=>msgHTML(m,g)).join("")}</div><div class="inp"><div>Message</div><i></i></div>`;$("#ct").classList.add("on");const m=$("#mg");m.scrollTop=m.scrollHeight;draw();return}
-if(e.target.id=="cbk")$("#ct").classList.remove("on");
-const k=e.target.closest("[data-k]");if(k&&k.dataset.k=="1")ring()}})();
-/* CALL */
-const C=$("#call");let vel=null;
-function ring(){C.innerHTML=`<div id="rg" class="L">${avatar("group")}<h2>${groupName}</h2><p>WhatsApp video call</p><div class="cbn"><div style="background:#ea0038" id="dc">✕</div><div style="background:#25d366" id="ac">▶</div></div></div><div id="vid"></div>`;C.classList.add("on");sb("l")}
-C.onclick=e=>{if(e.target.closest("#dc")||e.target.closest("#ec"))end();else if(e.target.closest("#ac"))play()};
-function play(){$("#rg").style.display="none";const v=$("#vid");v.classList.add("on");v.innerHTML=`<video playsinline preload="none" poster="${videoAsset.poster}" src="${videoAsset.src}"></video><div id="vc"><div>🔊</div><div>📹</div><div>🎤</div><div class="e" id="ec">✆</div></div>`;vel=v.querySelector("video");vel.onended=end;vel.onerror=()=>v.insertAdjacentHTML("afterbegin",`<div style="color:#888;font-size:13px;text-align:center;padding-top:45%">Set videoAsset.src</div>`);vel.play().catch(()=>{});let t=setTimeout(()=>$("#vc").style.opacity=0,2500);v.onclick=()=>{$("#vc").style.opacity=1;clearTimeout(t);t=setTimeout(()=>$("#vc").style.opacity=0,2500)}}
-function end(){if(vel){vel.pause();vel=null}C.classList.remove("on");sb("d")}
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const h=(html)=>{const d=document.createElement("div");d.innerHTML=html.trim();return d.firstChild};
+const tone=["#8f9aa8","#a8967f","#7f9a8c","#9a8fa8","#a88f8f","#8fa0a8","#a8a07f"];
+const media=(it,i)=>it.src?(it.video?`<video src="${it.src}" muted playsinline preload="metadata"></video>`:`<img src="${it.src}" loading="lazy" alt="">`):`<div style="background:linear-gradient(${140+i*20}deg,${tone[i%7]},${tone[(i+3)%7]})"></div>`;
+const svg=(p,s=26)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const ini=n=>n.split(" ").map(w=>w[0]).slice(0,2).join("");
+function tick(){const n=new Date(),t=n.toLocaleTimeString([],{hour:"numeric",minute:"2-digit",hour12:false});
+ $("#clk").textContent=t;$("#lt").textContent=t;$("#ld").textContent=n.toLocaleDateString([],{weekday:"long",day:"numeric",month:"long"})}
+tick();setInterval(tick,10000);
+const sb=(d)=>$("#sb").classList.toggle("d",!!d);
+const stacks={};let cur=null;
+function mkApp(id,build){const a=h(`<div class="app" id="a-${id}"></div>`);$("#apps").append(a);stacks[id]=[];a._build=build;build(a);return a}
+function push(id,node){const a=$("#a-"+id);node.classList.add("pg","in");a.append(node);stacks[id].push(node);node.offsetWidth;node.classList.remove("in")}
+function pop(id){const s=stacks[id];if(s.length){const n=s.pop();n.classList.add("in");setTimeout(()=>n.remove(),240)}else closeApp()}
+const backBtn=(id,l="‹ Back")=>`<a data-b="${id}">${l}</a>`;
+function wire(el,id){$$("[data-b]",el).forEach(b=>b.onclick=()=>pop(b.dataset.b))}
+function openApp(id,from){const a=$("#a-"+id);const r=from?from.getBoundingClientRect():null,p=$("#phone").getBoundingClientRect();
+ if(r)a.style.transformOrigin=`${r.left+r.width/2-p.left}px ${r.top+r.height/2-p.top}px`;
+ a.classList.add("open");cur=id;sb(1);if(id==="whatsapp")sb(1)}
+function closeApp(){if(!cur)return;$("#a-"+cur).classList.remove("open");cur=null;sb(0)}
+$("#hb").onclick=()=>{if(!$("#lock").classList.contains("up")){unlock();return}$("#call").classList.contains("show")||closeApp()};
+/* lock */
+function unlock(cb){$("#lock").classList.add("up");$("#hb").classList.remove("d");sb(0);cb&&setTimeout(cb,250)}
+const lk=$("#lock");let y0=null;
+lk.onpointerdown=e=>y0=e.clientY;lk.onpointerup=e=>{if(y0!==null&&y0-e.clientY>50)unlock();y0=null};lk.onclick=e=>{if(!e.target.closest(".not"))unlock()};
+[["WhatsApp","2 new messages","Ishu: ready rehna idiot","whatsapp","#3fd95b"],["Notes","1 notification","Do Not Let Brinda Choose","notes","#ffd60a"]].forEach(([a,b,c,id,col])=>{
+ const n=h(`<div class="not"><div class="ic" style="background:${col}"></div><div><b>${a}</b><span>${c}</span></div><small>now</small></div>`);
+ n.onclick=e=>{e.stopPropagation();unlock(()=>openApp(id))};$("#nots").append(n)});
+/* home */
+const glyph={Photos:"",Maps:svg('<path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',30).replace(/#fff/g,"#ea4335"),Notes:"",Calendar:`<div style="text-align:center;color:#000;line-height:1"><div style="color:#ff3b30;font-size:10px;font-weight:600;margin-top:-4px">WED</div><div style="font-size:32px;font-weight:300">14</div></div>`,Settings:svg('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/>',32),Contacts:svg('<circle cx="12" cy="9" r="4"/><path d="M4 21c1-5 15-5 16 0"/>',32),WhatsApp:svg('<path d="M4 20l1.5-4A8 8 0 1112 20a8 8 0 01-3.5-.8z" fill="#fff" stroke="none"/>',34)};
+const ID={Photos:"photos",Maps:"maps",Notes:"notes",Calendar:"calendar",Settings:"settings",Contacts:"contacts",WhatsApp:"whatsapp"};
+Object.keys(ID).forEach(n=>{const[tc,bg]=icons[n].split("|");const el=h(`<div class="ap"><div class="ic" style="background:${bg}">${glyph[n]}</div>${n}</div>`);
+ el.onclick=()=>openApp(ID[n],$(".ic",el));$("#grid").append(el)});
+["Phone|#34c759","Safari|#0a84ff","Messages|#30d158","Music|#fa233b"].forEach(s=>{const[n,c]=s.split("|");$("#dock").append(h(`<div class="ic" style="background:${c};opacity:1"></div>`))});
+$("#grid").lastChild.style.gridColumn="1";
+/* Photos */
+mkApp("photos",a=>{
+ const root=h(`<div class="pg"><div class="sc" id="ps"></div><div class="tab"><div class="on" data-t="lib" style="color:var(--blue)"><em>▦</em>Library</div><div data-t="alb"><em>❏</em>Albums</div></div></div>`);a.append(root);
+ const ps=$("#ps",root);let all=[];
+ const grid=(items,start)=>`<div class="g3">${items.map((it,i)=>`<div class="cell" data-i="${i}">${media(it,start+i)}${it.video?`<span class="dur">${it.dur}</span>`:""}</div>`).join("")}</div>`;
+ const bind=(el,items)=>$$(".cell",el).forEach(c=>c.onclick=()=>viewer(items,+c.dataset.i));
+ function viewer(items,i){const v=h(`<div class="viewer"><div class="vb" style="top:0;padding-top:46px;height:90px"><a>‹ Back</a><span></span></div><div class="vs">${items.map((it,k)=>`<div>${it.video?(it.src?`<video src="${it.src}" controls playsinline></video>`:media(it,k)):media(it,k)}</div>`).join("")}</div><div class="vb" style="bottom:0;height:70px"><span>⇪</span><span>♡</span><span>🗑</span></div></div>`);
+  a.append(v);$(".vs",v).scrollLeft=i*$(".vs",v).clientWidth;$("a",v).onclick=()=>v.remove();
+  $(".vs",v).onclick=()=>$$(".vb",v).forEach(b=>b.style.opacity=b.style.opacity==="0"?1:0)}
+ function lib(){root.dataset.v="lib";let s=0;ps.innerHTML=`<h1>Library</h1>`;
+  galleryData.library.forEach(g=>{const w=h(`<div><div class="sec">${g.m}</div>${grid(g.items,s)}</div>`);s+=g.items.length;ps.append(w);bind(w,g.items)})}
+ function albs(){ps.innerHTML=`<h1>Albums</h1><div class="alb">${galleryData.albums.map((al,i)=>`<div data-a="${i}"><div class="cell">${media(al.items[0],i)}</div><p>${al.name}</p><span class="sub" style="font-size:13px">${al.items.length}</span></div>`).join("")}</div>`;
+  $$("[data-a]",ps).forEach(e=>e.onclick=()=>{const al=galleryData.albums[e.dataset.a];const p=h(`<div><div class="nav">${backBtn("photos","‹ Albums")}<span class="ti">${al.name}</span><a style="visibility:hidden"></a></div><div class="sc">${grid(al.items,3)}</div></div>`);wire(p,"photos");push("photos",p);bind(p,al.items)})}
+ $$("[data-t]",root).forEach(t=>t.onclick=()=>{$$("[data-t]",root).forEach(x=>x.style.color="");t.style.color="var(--blue)";t.dataset.t==="lib"?lib():albs()});lib()});
+/* Maps */
+mkApp("maps",a=>{
+ const p=h(`<div class="pg" style="padding:0"><div class="map"><svg width="100%" height="100%" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"><rect width="390" height="844" fill="#ebe8e0"/><path d="M-10 560 Q120 500 190 600 T400 560 V844 H-10z" fill="#aad3df"/><rect x="40" y="120" width="120" height="90" rx="10" fill="#c8e6c0"/><rect x="250" y="360" width="110" height="80" rx="10" fill="#c8e6c0"/><g stroke="#fff" stroke-width="9" fill="none"><path d="M0 250H390M0 420H390M0 90H390M110 0V620M270 0V620M-10 700L400 640"/></g><g stroke="#fff" stroke-width="4" fill="none"><path d="M0 330H390M190 0V560M340 0V560M0 170H390"/></g><g stroke="#f8d27a" stroke-width="5" fill="none"><path d="M0 20L390 520"/></g></svg><div id="pins"></div><div class="sbar">🔍&nbsp; Search Maps</div></div><div class="sheet" id="sheet"></div></div>`);a.append(p);
+ const sh=$("#sheet",p);function list(){$$(".pin",p).forEach(x=>x.classList.remove("on"));sh.innerHTML=`<div style="padding:0 16px 6px;font-weight:600;font-size:19px">Saved places</div>`+mapLocations.map((l,i)=>`<div class="row" data-l="${i}"><div class="ic" style="width:34px;height:34px;border-radius:50%;background:#ea4335">${svg('<circle cx="12" cy="10" r="3"/><path d="M12 22s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z"/>',18)}</div><div><div>${l.name}</div><div class="sub">${l.desc}</div></div></div>`).join("");$$("[data-l]",sh).forEach(r=>r.onclick=()=>sel(+r.dataset.l))}
+ function sel(i){const l=mapLocations[i];$$(".pin",p).forEach((x,k)=>x.classList.toggle("on",k===i));sh.innerHTML=`<div style="padding:0 16px"><div style="display:flex;justify-content:space-between"><div style="font-size:22px;font-weight:600">${l.name}</div><a id="x" style="color:var(--sub);font-size:22px;cursor:pointer">✕</a></div><div class="sub" style="margin:2px 0 12px">${l.desc}</div><div style="display:flex;gap:8px;margin-bottom:14px"><div style="background:var(--blue);color:#fff;border-radius:10px;padding:9px 22px;font-weight:600">Directions</div><div style="background:var(--card);color:var(--blue);border-radius:10px;padding:9px 18px;font-weight:600">Saved</div></div><div style="background:var(--card);border-radius:12px;padding:12px 14px;line-height:1.5;font-size:16px">${l.lines.join("<br>")}</div></div>`;$("#x",sh).onclick=list}
+ mapLocations.forEach((l,i)=>{const e=h(`<div class="pin" style="left:${l.x}%;top:${l.y}%"></div>`);e.onclick=()=>sel(i);$("#pins",p).append(e)});list();
+ p.append(h(`<a style="position:absolute;top:max(104px,calc(env(safe-area-inset-top) + 90px));left:16px;color:var(--blue);background:var(--bg);padding:6px 12px;border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,.2);z-index:6;cursor:pointer;font-size:14px" id="mb">‹ Home</a>`));$("#mb",p).onclick=closeApp});
+/* Notes */
+function noteBody(b){return b.split("\n").map(l=>{if(l.startsWith("[x] "))return`<div class="ln"><span class="ck">☑</span>${l.slice(4)}</div>`;if(l.startsWith("[ ] "))return`<div class="ln"><span class="ck" style="color:var(--sub)">○</span>${l.slice(4)}</div>`;if(l.startsWith("- "))return`<div class="ln bl">${l.slice(2)}</div>`;return`<div class="ln">${l||"&nbsp;"}</div>`}).join("")}
+mkApp("notes",a=>{const r=h(`<div class="pg" style="background:var(--card)"><div class="nav">${backBtn("x","‹ Folders")}<span class="ti"></span><a style="visibility:hidden"></a></div><div class="sc"><h1 style="padding-left:16px">Notes</h1><div class="grp" id="nl"></div></div></div>`);a.append(r);$("[data-b]",r).onclick=closeApp;
+ notesData.forEach(n=>{const x=h(`<div class="row" style="flex-direction:column;align-items:flex-start;gap:2px"><b style="font-weight:600">${n.t}</b><span class="sub">${n.d} &nbsp;${n.b.split("\n").find(l=>l.trim()).replace(/^(\[.\]|-) /,"").slice(0,34)}</span></div>`);
+  x.onclick=()=>{const p=h(`<div style="background:var(--bg)"><div class="nav">${backBtn("notes","‹ Notes")}<span class="ti"></span><a style="visibility:hidden"></a></div><div class="sc nb"><div class="d">${n.d}, 9:41</div><h2>${n.t}</h2>${noteBody(n.b)}</div></div>`);wire(p,"notes");push("notes",p)};$("#nl",r).append(x)})});
+/* Calendar */
+mkApp("calendar",a=>{const f=new Date(2026,9,1).getDay();let c="";["S","M","T","W","T","F","S"].forEach(d=>c+=`<span class="w">${d}</span>`);for(let i=0;i<f;i++)c+="<span></span>";for(let d=1;d<=31;d++)c+=`<span class="${d===14?"on":""}">${d}</span>`;
+ a.append(h(`<div class="pg"><div class="nav"><a data-b="x" style="color:#ff3b30">‹ 2026</a><span class="ti"></span><a style="visibility:hidden"></a></div><div class="sc"><h1 style="color:#ff3b30">October</h1><div class="cg">${c}</div><div style="margin:22px 16px;border-left:4px solid #ff3b30;padding:6px 12px;background:var(--card);border-radius:0 10px 10px 0"><b>Celebration Time</b><div class="sub">Wednesday, 14 October · All day</div></div></div></div>`));$("[data-b]",a).onclick=closeApp});
+/* Contacts */
+mkApp("contacts",a=>{const r=h(`<div class="pg"><div class="nav"><a data-b="x">‹ Lists</a><span class="ti"></span><a style="visibility:hidden"></a></div><div class="sc"><h1>Contacts</h1><div class="sec sub">Emergency</div><div id="cl"></div></div></div>`);a.append(r);$("[data-b]",r).onclick=closeApp;
+ contactsData.forEach(c=>{if(!c.em&&!$("#cl .oth")){$("#cl",r).append(h(`<div class="oth sec sub">All Contacts</div>`))}
+  const x=h(`<div class="row"><div class="av" style="background:${c.c};width:40px;height:40px;font-size:15px">${ini(c.n)}</div><div><div>${c.n}${c.em?' <span style="color:#ff3b30;font-size:12px">SOS</span>':""}</div>${c.note?`<div class="sub">${c.note}</div>`:""}</div></div>`);
+  x.onclick=()=>{const p=h(`<div><div class="nav">${backBtn("contacts","‹ Contacts")}<span class="ti"></span><a style="visibility:hidden"></a></div><div class="sc" style="text-align:center"><div class="av" style="background:${c.c};width:96px;height:96px;font-size:34px;margin:10px auto">${ini(c.n)}</div><div style="font-size:26px;font-weight:600">${c.n}</div>${c.em?'<div class="sub">Emergency Contact</div>':""}<div class="grp" style="text-align:left;margin-top:22px"><div class="row"><div><div class="sub">mobile</div><div style="color:var(--blue)">${c.ph}</div></div></div>${c.note?`<div class="row"><div><div class="sub">notes</div><div>${c.note}</div></div></div>`:""}</div></div></div>`);wire(p,"contacts");push("contacts",p)};$("#cl",r).append(x)})});
+/* Settings */
+mkApp("settings",a=>{const r=h(`<div class="pg" style="background:var(--card)"><div class="nav"><a data-b="x">‹ Home</a><span class="ti"></span><a style="visibility:hidden"></a></div><div class="sc"><h1>Settings</h1></div></div>`);a.append(r);$("[data-b]",r).onclick=closeApp;
+ settingsData.forEach((s,gi)=>{const g=h(`<div class="grp"></div>`);s.g.forEach(([t,v,j],i)=>{const x=h(`<div class="row" style="flex-wrap:wrap;background:var(--bg)"><div class="ic" style="width:29px;height:29px;border-radius:7px;background:${["#ff9500","#0a84ff","#ff3b30","#34c759","#8e8e93"][gi%5]}"></div><span style="flex:1">${t}</span><span class="sub">${v} ›</span><div class="sub" style="width:100%;padding-left:41px;display:none;font-size:13.5px">${j}</div></div>`);
+   if(gi===0){x.innerHTML=`<div class="av" style="background:#a58fbf;width:58px;height:58px">BK</div><div style="flex:1"><div style="font-size:19px">${ME}</div><div class="sub" style="font-size:13px">${v}</div></div><div class="sub" style="width:100%;padding-left:70px;display:none;font-size:13.5px">${j}</div>`}
+   x.onclick=()=>{const d=x.lastElementChild;d.style.display=d.style.display==="none"?"block":"none"};g.append(x)});$(".sc",r).append(g)})});
+/* WhatsApp */
+mkApp("whatsapp",a=>{
+ const r=h(`<div class="pg"><div class="nav" style="color:#25a244"><span style="flex:1;font-size:30px;font-weight:700;color:var(--tx);padding-left:6px;letter-spacing:-.5px" id="wt">Chats</span></div><div class="sc" id="wl"></div><div class="tab"><div data-t="c"><em>◎</em>Updates</div><div data-t="k"><em>✆</em>Calls</div><div data-t="m" class="on"><em>▤</em>Chats</div><div data-t="s"><em>⚙</em>Settings</div></div></div>`);a.append(r);
+ const wl=$("#wl",r);
+ const bub=m=>m.d?`<div class="day">${m.d}</div>`:`<div class="bb ${m.f==="Brinda"?"o":"i"}">${m.f&&m.f!=="Brinda"&&m.g?`<div class="n" style="color:${people[m.f]}">${m.f}</div>`:""}${m.img!==undefined?`<div class="im">${media({src:m.img},m.f.length)}</div>`:""}${m.t?`<span>${m.t}</span>`:""}<span class="tm ${m.f==="Brinda"?"r":""}">${m.tm}${m.f==="Brinda"?" ✓✓":""}</span><div style="clear:both"></div></div>`;
+ function open(c){const p=h(`<div style="background:var(--bg)"><div class="nav" style="color:#25a244;border-bottom:.5px solid var(--sep)">${backBtn("whatsapp","‹")}<div class="av" style="background:${c.c};width:34px;height:34px;font-size:13px">${ini(c.n)}</div><div style="flex:1;color:var(--tx);font-size:16px;font-weight:600;margin-left:6px;line-height:1.1">${c.n}<div class="sub" style="font-weight:400;font-size:12px">${c.group?"Brinda, Ishu, Devaanshi":"online"}</div></div></div><div class="chat">${c.msgs.map(m=>bub({...m,g:c.group})).join("")}</div><div class="inp"><span>＋</span><div>Message</div><span>🎤</span></div></div>`);wire(p,"whatsapp");push("whatsapp",p);const ch=$(".chat",p);ch.scrollTop=ch.scrollHeight;
+  if(c.trigger)setTimeout(()=>{if(cur==="whatsapp"&&stacks.whatsapp.includes(p))incoming()},3000)}
+ function view(t){$$("[data-t]",r).forEach(x=>x.classList.toggle("on",x.dataset.t===t));$("#wt",r).textContent={m:"Chats",k:"Calls",c:"Updates",s:"Settings"}[t];
+  if(t==="m")wl.innerHTML=chatList.slice().sort((x,y)=>(y.id==="grp")-(x.id==="grp")||0).map(c=>`<div class="row" data-c="${c.id}"><div class="av" style="background:${c.c}">${ini(c.n)}</div><div style="flex:1;min-width:0"><div style="display:flex;justify-content:space-between"><b style="font-weight:600">${c.n}</b><span class="sub" style="font-size:12px;${c.un?"color:#25a244":""}">${c.tm}</span></div><div class="sub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${c.last}</div></div>${c.un?`<span style="background:#25a244;color:#fff;border-radius:10px;font-size:12px;padding:1px 7px">${c.un}</span>`:""}</div>`).join("");
+  else if(t==="k")wl.innerHTML=callHistory.map((c,i)=>`<div class="row" data-k="${i}"><div class="av" style="background:${c.c}">${ini(c.n)}</div><div style="flex:1"><div style="${c.missed?"color:#ff3b30":""}">${c.n}</div><div class="sub">${c.missed?"↙":"↗"} ${c.kind}</div></div><span class="sub" style="font-size:13px">${c.when}</span></div>`).join("");
+  else wl.innerHTML=`<div class="sub" style="padding:40px;text-align:center">Nothing here yet</div>`;
+  $$("[data-c]",wl).forEach(e=>e.onclick=()=>open(chatList.find(c=>c.id===e.dataset.c)));$$("[data-k]",wl).forEach(e=>e.onclick=()=>{const c=callHistory[e.dataset.k];if(c.group)incoming()})}
+ $$("[data-t]",r).forEach(t=>t.onclick=()=>view(t.dataset.t));view("m")});
+/* Call */
+function incoming(){const c=$("#call");c.innerHTML=`<div class="ring"><div class="av" style="width:120px;height:120px;font-size:42px;background:#d08a3a">TT</div></div><h2>${GROUP}</h2><p>WhatsApp group video call…</p><div class="btns"><div><i style="background:#ff3b30" id="dec">✕</i>Decline</div><div><i style="background:#25d366" id="acc">${svg('<rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/>',28)}</i>Accept</div></div>`;
+ c.classList.add("show");sb(0);navigator.vibrate&&navigator.vibrate([300,200,300]);
+ $("#dec").onclick=()=>{c.classList.remove("show");sb(1)};
+ $("#acc").onclick=()=>{c.classList.remove("show");const v=$("#vid");v.innerHTML=`<video ${videoAsset.poster?`poster="${videoAsset.poster}"`:""} src="${videoAsset.src}" playsinline webkit-playsinline preload="none"></video><div class="ctl" id="ctl"><i>🎤</i><i>📹</i><i>🔊</i><i style="background:#ff3b30" id="end">✆</i></div>`;v.classList.add("show");const vd=$("video",v);vd.play().catch(()=>{});
+  const fade=()=>{$("#ctl").style.opacity=1;clearTimeout(fade.t);fade.t=setTimeout(()=>$("#ctl").style.opacity=0,3000)};v.onclick=fade;fade();
+  const done=()=>{v.classList.remove("show");v.innerHTML="";c.innerHTML=`<div class="av" style="width:100px;height:100px;font-size:36px;background:#d08a3a">TT</div><h2>${GROUP}</h2><p>Call ended</p>`;c.classList.add("show");setTimeout(()=>{c.classList.remove("show");sb(1)},2200)};
+  $("#end").onclick=e=>{e.stopPropagation();vd.pause();done()};vd.onended=done}}
 </script></body></html>
